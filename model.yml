@@ -1,0 +1,39 @@
+prefixes:
+ ex: "http://example.com/"
+ owl: "http://www.w3.org/2002/07/owl#"
+mappings:
+  Commodity:
+    sources:
+      - ['dataset.csv~csv']
+    s: http://example.com/$(Commodity)
+    po:
+      - [a, ex:Commodity]
+      - [ex:hasName, $(Commodity)]
+      - [ex:hasType, $(CommodityType)]
+  
+  Country:
+    sources:
+      - ['dataset.csv~csv']
+    s: http://example.com/$(Country)
+    po:
+      - [a, ex:Country]
+      - [ex:hasName, $(Country)]
+      - [owl:sameAs, $(Wikidata)]
+      
+  Production:
+    sources:
+      - ['dataset.csv~csv']
+    s: ex:$(Country)$(Commodity)$(Year)
+    po:
+      - [a, ex:Production]
+      - [ex:year, $(Year), xsd:decimal]
+      - [ex:produced, $(Production), xsd:float]
+      - [ex:used, $(ApparentUse), xsd:float]
+      - p: ex:product
+        o:
+        - mapping: Commodity
+      - p: ex:inCountry
+        o:
+        - mapping: Country
+
+

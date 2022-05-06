@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+    .countries {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 70vw;
+      padding: 20px;
+      border-radius: 10px;
+      border: 4px solid #121212
+    }
+    a {
+        background-color: #121212;
+        text-decoration: none;
+        color: whitesmoke;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 15px;
+        font-size: larger;
+    }
+    h1 {
+        text-align: center;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+  </head>
+ <body>
+    <h1>Select a country to get more information</h1>
+    <div class="center">
+        <div class="countries">{{list | safe}}</div>
+    </div>
+</body>
+</html>
