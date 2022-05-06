@@ -10,8 +10,10 @@ services:
     volumes:
       - ./database:/database
     image: openlink/virtuoso-opensource-7:latest
-  # web:
-  #   container_name: linkedweb
-  #   ports:
-  #     - 80:5000
-  #   image: lweb:latest
+  web:
+    container_name: linkedweb
+    volumes:
+      - ./webserver:/webserver
+    ports:
+      - 80:5000
+    image: lweb:latest

@@ -4,8 +4,6 @@ RUN pip install sparqlWrapper
 RUN pip install flask
 RUN pip install matplotlib
 
-COPY web.py .
-COPY sparqlclient.py .
-COPY templates templates
+WORKDIR /webserver
 
 CMD ["python", "web.py"]

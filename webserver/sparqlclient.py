@@ -3,7 +3,7 @@ from matplotlib.figure import Figure
 import numpy as np
 
 def exec_query(query):
-    sparql = SPARQLWrapper("http://localhost:8890/sparql")
+    sparql = SPARQLWrapper("http://virtuoso:8890/sparql")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
