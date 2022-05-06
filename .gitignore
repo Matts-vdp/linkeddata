@@ -1,3 +1,4 @@
 __pycache__
 database/virtuoso.log
 database/virtuoso.trx
+database/virtuoso.lck

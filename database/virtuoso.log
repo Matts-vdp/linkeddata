@@ -100,3 +100,10 @@
 17:29:59 Checkpoint finished, log reused
 17:30:01 HTTP/WebDAV server online at 8890
 17:30:01 Server online at 1111 (pid 1)
+18:30:02 Checkpoint started
+18:30:02 Checkpoint finished, log reused
+19:00:54 Server received signal 2
+19:00:54 Initiating normal shutdown
+19:00:54 Checkpoint started
+19:00:54 Checkpoint finished, log reused
+19:00:54 Server shutdown complete
