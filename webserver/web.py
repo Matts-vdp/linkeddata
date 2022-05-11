@@ -14,7 +14,7 @@ def fig_to_html(fig: Figure):
     """convert figure to html with base 64 encoded image"""
     
     buf = BytesIO()
-    fig.savefig(buf, format="png")
+    fig.savefig(buf, format="png", bbox_inches="tight")
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     img = f"<img src='data:image/png;base64,{data}'/>"
     return img
@@ -27,15 +27,15 @@ def stats_graph(country):
     width = 0.35  # the width of the bars
 
     fig, ax = plt.subplots()
-    fig.set_figheight(10)
-    fig.set_figwidth(10)  
-    ax.bar(x - width/2, p, width, label='Production')
-    ax.bar(x + width/2, u, width, label='Use')
+    fig.set_figheight(7)
+    fig.set_figwidth(7)  
+
+    ax.plot(y, p, linewidth=3, label="Production")
+    ax.plot(y, u, linewidth=3, label="Use")
 
     ax.set_ylabel('Thousand tons')
     ax.set_xlabel('Year')
-    ax.set_title(f'Production and use in {country}')
-    ax.set_xticks(x)
+    # ax.set_xticks(x)
     ax.set_xticklabels(y)
     ax.legend()
 
@@ -63,7 +63,7 @@ def country():
     img = stats_graph(name)
     if img == "":
         return redirect("/")
-    return render_template("country.html", graph=img)
+    return render_template("country.html", graph=img, country=name)
     
 
 if __name__ == '__main__':

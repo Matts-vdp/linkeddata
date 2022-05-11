@@ -18,7 +18,7 @@ mappings:
     po:
       - [a, ex:Country]
       - [ex:hasName, $(Country)]
-      - [owl:sameAs, $(Wikidata)]
+      - [owl:sameAs, $(Wikidata)~iri]
       
   Production:
     sources:

@@ -3,7 +3,7 @@ from matplotlib.figure import Figure
 import numpy as np
 
 def exec_query(query):
-    sparql = SPARQLWrapper("http://virtuoso:8890/sparql")
+    sparql = SPARQLWrapper("http://virtuoso:8890/sparql", 'https://query.wikidata.org')
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
@@ -28,7 +28,7 @@ def get_countries():
     return names
 
 def stats(country: str):
-    """retreives for the production stats for a country"""
+    """retrieves the production and use stats for a country"""
     query = f"""
     prefix ex: <http://example.com/>
     select ?y SUM(?pr) SUM(?u)
@@ -47,12 +47,28 @@ def stats(country: str):
     results = exec_query(query)
     years, produced, used = [], [], []
     for result in results['results']['bindings']:
-        years.append(result["y"]['value'])
-        produced.append(result["callret-1"]['value'])
-        used.append(result["callret-2"]['value'])
+        years.append(int(result["y"]['value']))
+        produced.append(float(result["callret-1"]['value']))
+        used.append(float(result["callret-2"]['value']))
     return years, produced, used
+
+def dbpedia(country: str):
+    query = f"""
+    prefix ex: <http://example.com/>
+    prefix owl: <http://www.w3.org/2002/07/owl#>
+    select ?s ?o ?p ?o2
+    FROM <http://localhost:8890/dataset>
+    WHERE {{
+        ?s owl:sameAs ?o.
+        ?o ?p ?o2.
+    }}
+    LIMIT 10
+    """
+    results = exec_query(query)
+    for res in results['results']['bindings']:
+        print(res['s']['value'], res['o']['value'], res['p']['value'], res['o2']['value'])
 
 
 if __name__ == "__main__":
-    print(get_countries())
+    print(dbpedia("Belgium"))
     
