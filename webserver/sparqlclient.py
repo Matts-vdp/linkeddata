@@ -2,19 +2,22 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from matplotlib.figure import Figure
 import numpy as np
 
-def exec_query(query):
-    sparql = SPARQLWrapper("http://virtuoso:8890/sparql", 'https://query.wikidata.org')
+def exec_query(query: str, local=True):
+    if local:
+        sparql = SPARQLWrapper("http://localhost:8890/sparql", defaultGraph="http://localhost:8890/dataset")
+    else:
+        sparql = SPARQLWrapper('https://query.wikidata.org/sparql')
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     return results
     
+
 def get_countries():
     """retrieves all country names"""
     query = """
     prefix ex: <http://example.com/>
     select ?o
-    FROM <http://localhost:8890/dataset>
     WHERE {
         ?s a ex:Country.
         ?s ex:hasName ?o.
@@ -32,7 +35,6 @@ def stats(country: str):
     query = f"""
     prefix ex: <http://example.com/>
     select ?y SUM(?pr) SUM(?u)
-    FROM <http://localhost:8890/dataset>
     WHERE {{
         ?c a ex:Country.
         ?c ex:hasName "{country}".
@@ -52,23 +54,50 @@ def stats(country: str):
         used.append(float(result["callret-2"]['value']))
     return years, produced, used
 
-def dbpedia(country: str):
+def get_link(country: str):
     query = f"""
     prefix ex: <http://example.com/>
     prefix owl: <http://www.w3.org/2002/07/owl#>
-    select ?s ?o ?p ?o2
-    FROM <http://localhost:8890/dataset>
+    select ?o
     WHERE {{
-        ?s owl:sameAs ?o.
-        ?o ?p ?o2.
+        ?c a ex:Country.
+        ?c ex:hasName "{country}".
+        ?c owl:sameAs ?o
+    }}
+    """
+    results = exec_query(query)
+    if len(results['results']['bindings']) == 0:
+        return ""
+    res = results['results']['bindings'][0]['o']['value']
+    cid = res.split("/")[-1]
+    return cid
+
+
+def info(country: str):
+    cid = get_link(country)
+    if cid == "":
+        return "", "Country not found on Wikidata", "Country not found on Wikidata"
+    query = f"""
+    prefix ex: <http://example.com/>
+    prefix owl: <http://www.w3.org/2002/07/owl#>
+    prefix wd: <http://www.wikidata.org/entity/>
+    select ?inc ?img ?capl
+    WHERE {{
+        wd:{cid} wdt:P18 ?img.
+        wd:{cid} wdt:P571 ?inc.
+        wd:{cid} wdt:P36 ?cap.
+        ?cap rdfs:label ?capl
+        FILTER(lang(?capl)="en").
     }}
     LIMIT 10
     """
-    results = exec_query(query)
-    for res in results['results']['bindings']:
-        print(res['s']['value'], res['o']['value'], res['p']['value'], res['o2']['value'])
-
+    try:
+        results = exec_query(query, False)
+        res = results['results']['bindings'][0]
+        return res['img']['value'], res['inc']['value'], res['capl']['value']
+    except:
+        return "", "Wikidata timeout", "Wikidata timeout"
 
 if __name__ == "__main__":
-    print(dbpedia("Belgium"))
+    print(info("Belgium"))
     

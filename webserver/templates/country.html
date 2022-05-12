@@ -1,33 +1,90 @@
 <!doctype html>
 <html>
-  <head>
-    <style>
-    img {
-      max-width: 60vw;
-      max-height: 60vw;
+
+<head>
+  <style>
+    .gr {
+      width: 500px;
+      height: 500px;
+      padding-right: 25px;
+      padding-left: 25px;
     }
+
     .graph {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px;
+      border-radius: 10px;
+      border: 4px solid #121212;
+      width: 80vw;
+      justify-self: center;
     }
-    h1 {
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    h1,
+    h2 {
       text-align: center;
     }
+
     a {
-        background-color: #121212;
-        text-decoration: none;
-        color: whitesmoke;
-        border-radius: 5px;
-        margin: 5px;
-        padding: 15px;
-        font-size: larger;
+      background-color: #121212;
+      text-decoration: none;
+      color: whitesmoke;
+      border-radius: 5px;
+      margin: 20px;
+      padding: 15px;
+      font-size: larger;
     }
-    </style>
-  </head>
- <body>
-   <h1>Production and use in {{country}}</h1>
-   <div class="graph">{{graph | safe}}</div>
-   <div class="graph"><a href='/'>Back</a></div>
-   
+
+    table {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    table,
+    td {
+      padding: 15px;
+      border-collapse: collapse;
+      border: 3px solid #121212;
+      font-size: large;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Production and use in {{country}}</h1>
+  <div class="center">
+    <div class="graph">
+      <div>
+        {{graph | safe}}
+      </div>
+      <div>
+        <h2>Info:</h2>
+        <table>
+          <tr>
+            <td>Inception:</td>
+            <td>{{inception}}</td>
+          </tr>
+          <tr>
+            <td>Capital:</td>
+            <td>{{capital}}</td>
+          </tr>
+          <tr>
+            <td>Image:</td>
+            <td><img src="{{image}}" alt="Image not found" style="width: 400px;" /></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="center"><a href='/'>Back</a></div>
 </body>
+
 </html>

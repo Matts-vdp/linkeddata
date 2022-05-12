@@ -16,7 +16,7 @@ def fig_to_html(fig: Figure):
     buf = BytesIO()
     fig.savefig(buf, format="png", bbox_inches="tight")
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
-    img = f"<img src='data:image/png;base64,{data}'/>"
+    img = f"<img class='gr' src='data:image/png;base64,{data}'/>"
     return img
 
 def stats_graph(country):
@@ -63,7 +63,15 @@ def country():
     img = stats_graph(name)
     if img == "":
         return redirect("/")
-    return render_template("country.html", graph=img, country=name)
+    cim, inc, cap = sc.info(name)
+    return render_template(
+        "country.html", 
+        graph = img, 
+        country = name, 
+        image = cim,
+        capital = cap,
+        inception = inc
+        )
     
 
 if __name__ == '__main__':
