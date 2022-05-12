@@ -4,7 +4,7 @@ import numpy as np
 
 def exec_query(query: str, local=True):
     if local:
-        sparql = SPARQLWrapper("http://localhost:8890/sparql", defaultGraph="http://localhost:8890/dataset")
+        sparql = SPARQLWrapper("http://virtuoso:8890/sparql", defaultGraph="http://localhost:8890/dataset")
     else:
         sparql = SPARQLWrapper('https://query.wikidata.org/sparql')
     sparql.setQuery(query)
