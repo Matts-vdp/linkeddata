@@ -63,14 +63,17 @@ def country():
     img = stats_graph(name)
     if img == "":
         return redirect("/")
-    cim, inc, cap = sc.info(name)
+    cim, inc, cap, e = sc.info(name)
+    if e != "":
+        e = "Error: " + str(e)
     return render_template(
         "country.html", 
         graph = img, 
         country = name, 
         image = cim,
         capital = cap,
-        inception = inc
+        inception = inc,
+        error = e
         )
     
 

@@ -76,7 +76,7 @@ def get_link(country: str):
 def info(country: str):
     cid = get_link(country)
     if cid == "":
-        return "", "Country not found on Wikidata", "Country not found on Wikidata"
+        return "", "Country not found on Wikidata", "Country not found on Wikidata", "Country not linked to Wikidata"
     query = f"""
     prefix ex: <http://example.com/>
     prefix owl: <http://www.w3.org/2002/07/owl#>
@@ -94,9 +94,9 @@ def info(country: str):
     try:
         results = exec_query(query, False)
         res = results['results']['bindings'][0]
-        return res['img']['value'], res['inc']['value'], res['capl']['value']
-    except:
-        return "", "Wikidata timeout", "Wikidata timeout"
+        return res['img']['value'], res['inc']['value'], res['capl']['value'], ""
+    except Exception as e:
+        return "", "Wikidata timeout", "Wikidata timeout", e
 
 if __name__ == "__main__":
     print(info("Belgium"))
