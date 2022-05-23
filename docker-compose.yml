@@ -16,4 +16,5 @@ services:
       - ./webserver:/webserver
     ports:
       - 80:5000
+    build: ./webserver
     image: lweb:latest

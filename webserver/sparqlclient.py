@@ -4,7 +4,11 @@ import numpy as np
 
 def exec_query(query: str, local=True):
     if local:
-        sparql = SPARQLWrapper("http://virtuoso:8890/sparql", defaultGraph="http://localhost:8890/dataset")
+        sparql = SPARQLWrapper(
+            "http://virtuoso:8890/sparql", 
+            defaultGraph="http://localhost:8890/dataset", 
+            agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            )
     else:
         sparql = SPARQLWrapper('https://query.wikidata.org/sparql')
     sparql.setQuery(query)
@@ -98,6 +102,29 @@ def info(country: str):
     except Exception as e:
         return "", "Wikidata timeout", "Wikidata timeout", e
 
+def getTop(country: str, value: str):
+    """top produced and used products of a country"""
+    query = f"""
+    prefix ex: <http://example.com/>
+    select ?name (SUM(?pr) as ?val)
+    WHERE {{
+        ?c a ex:Country.
+        ?c ex:hasName "{country}".
+        ?p ex:inCountry ?c.
+        ?p ex:{value} ?pr.
+        ?p ex:product ?com.
+        ?com ex:hasName ?name.
+    }}
+    GROUP BY ?name
+    ORDER BY DESC (?val) 
+    LIMIT 5
+    """
+    results = exec_query(query)
+    top = {}
+    for result in results['results']['bindings']:
+        top[result['name']['value']] = float(result['val']['value'])
+    return top
+
 if __name__ == "__main__":
-    print(info("Belgium"))
+    print(getTop("Belgium", 'used'))
     

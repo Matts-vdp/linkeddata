@@ -19,7 +19,7 @@ def fig_to_html(fig: Figure):
     img = f"<img class='gr' src='data:image/png;base64,{data}'/>"
     return img
 
-def stats_graph(country):
+def stats_graph(country: str):
     y, p, u = sc.stats(country)
     if len(y) == 0:
         return ""
@@ -38,8 +38,22 @@ def stats_graph(country):
     # ax.set_xticks(x)
     ax.set_xticklabels(y)
     ax.legend()
+    ax.grid(True)
 
     return fig_to_html(fig)
+
+def dispay_top(country:str, value: str):
+    top = sc.getTop(country, value)
+    html = ''
+    i = 1
+    for name, amount in top.items():
+        html += f'''<tr>
+            <td class="first">{i}</td>
+            <td>{name.lower()}</td>
+            <td class="last">{amount:.0f}</td>
+        </tr>'''
+        i += 1
+    return html
 
 def get_countries():
     countries = sc.get_countries()
@@ -73,6 +87,8 @@ def country():
         image = cim,
         capital = cap,
         inception = inc,
+        ptable = dispay_top(name, 'produced'),
+        utable = dispay_top(name, 'used'),
         error = e
         )
     

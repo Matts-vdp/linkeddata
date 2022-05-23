@@ -26,10 +26,12 @@
       display: flex;
       justify-content: center;
     }
+
     h2 {
       margin: 0;
       padding: 0;
     }
+
     h1,
     h2 {
       text-align: center;
@@ -48,14 +50,26 @@
     table {
       padding-left: 25px;
       padding-right: 25px;
+      margin: 10px;
+      border-radius: 20px;
     }
-
-    table,
+    td,tr,table {
+      border-width: 0px;
+      border-collapse: collapse;
+    }
     td {
       padding: 15px;
-      border-collapse: collapse;
-      border: 3px solid #121212;
       font-size: large;
+      border-width: 5px;
+    }
+    .first {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-right: 3px solid black;
+    }
+    .last {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
     }
   </style>
 </head>
@@ -68,7 +82,29 @@
         {{graph | safe}}
       </div>
       <div>
-        <h2>Info:</h2>
+        <h2>Top production</h2>
+        <table>
+          <tr>
+            <td class="first head"></td>
+            <td class="head">Product</td>
+            <td class="last head">Amount (thousand tons)</td>
+          </tr>
+          {{ptable | safe}}
+        </table>
+      </div>
+      <div>
+        <h2>Top use</h2>
+        <table>
+          <tr>
+            <td></td>
+            <td>Product</td>
+            <td>Amount (thousand tons)</td>
+          </tr>
+          {{utable | safe}}
+        </table>
+      </div>
+      <div>
+        <h2>Extra info:</h2>
         <table>
           <tr>
             <td>Inception:</td>
@@ -84,10 +120,11 @@
           </tr>
         </table>
       </div>
-
     </div>
   </div>
-  <div class="center"><p>{{error}}</p></div>
+  <div class="center">
+    <p>{{error}}</p>
+  </div>
   <div class="center"><a href='/'>Back</a></div>
 </body>
 
