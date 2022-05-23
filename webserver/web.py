@@ -6,9 +6,17 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import sparqlclient as sc
 import numpy as np
+from flask_caching import Cache
 
+
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
 app = Flask(__name__)
-
+app.config.from_mapping(config)
+cache = Cache(app)
 
 def fig_to_html(fig: Figure):
     """convert figure to html with base 64 encoded image"""
@@ -48,9 +56,9 @@ def dispay_top(country:str, value: str):
     i = 1
     for name, amount in top.items():
         html += f'''<tr>
-            <td class="first">{i}</td>
-            <td>{name.lower()}</td>
-            <td class="last">{amount:.0f}</td>
+            <div class="first item {value}">{i}</div>
+            <div class="item {value}">{name.lower()}</div>
+            <div class="last item {value}">{amount:.0f}</div>
         </tr>'''
         i += 1
     return html
@@ -69,6 +77,7 @@ def hello():
     return render_template("web.html", list=l) 
 
 @app.route('/country', methods=['GET'])
+@cache.cached(timeout=100, query_string=True)
 def country():
     args = request.args
     name = args.get("name", default="", type=str)
@@ -89,7 +98,6 @@ def country():
         inception = inc,
         ptable = dispay_top(name, 'produced'),
         utable = dispay_top(name, 'used'),
-        error = e
         )
     
 

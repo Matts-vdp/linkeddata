@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
   <style>
     .gr {
       width: 500px;
@@ -18,12 +19,14 @@
       padding: 25px;
       border-radius: 10px;
       border: 4px solid #121212;
-      width: 80vw;
       justify-self: center;
+      margin-bottom: 30px;
+      width: 80vw;
     }
 
     .center {
       display: flex;
+      flex-direction: row;
       justify-content: center;
     }
 
@@ -53,23 +56,52 @@
       margin: 10px;
       border-radius: 20px;
     }
-    td,tr,table {
-      border-width: 0px;
+
+    td,
+    table {
+      border: 3px solid black;
       border-collapse: collapse;
     }
+
     td {
       padding: 15px;
       font-size: large;
-      border-width: 5px;
     }
+
+    .top {
+      display: grid;
+      grid-template-columns: min-content 1fr 1fr;
+      row-gap: 10px;
+      margin: 20px;
+      margin-top: 5px;
+    }
+
+    .item {
+      padding: 15px;
+      font-size: larger;
+    }
+
+    .head {
+      padding-left: 15px;
+      color: gray;
+    }
+
     .first {
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      border-right: 3px solid black;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
+
     .last {
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .used {
+      background-color: lightsalmon;
+    }
+
+    .produced {
+      background-color: lightskyblue;
     }
   </style>
 </head>
@@ -78,31 +110,7 @@
   <h1>Production and use in {{country}}</h1>
   <div class="center">
     <div class="graph">
-      <div>
-        {{graph | safe}}
-      </div>
-      <div>
-        <h2>Top production</h2>
-        <table>
-          <tr>
-            <td class="first head"></td>
-            <td class="head">Product</td>
-            <td class="last head">Amount (thousand tons)</td>
-          </tr>
-          {{ptable | safe}}
-        </table>
-      </div>
-      <div>
-        <h2>Top use</h2>
-        <table>
-          <tr>
-            <td></td>
-            <td>Product</td>
-            <td>Amount (thousand tons)</td>
-          </tr>
-          {{utable | safe}}
-        </table>
-      </div>
+      {{graph | safe}}
       <div>
         <h2>Extra info:</h2>
         <table>
@@ -121,9 +129,32 @@
         </table>
       </div>
     </div>
-  </div>
-  <div class="center">
-    <p>{{error}}</p>
+    </div>
+    <div class="center">
+    <div class="graph">
+      <div>
+        <h2>Top production</h2>
+        <div class="top">
+          <div class="head"></div>
+          <div class="head">Product</div>
+          <div class="head">Amount (thousand tons)</div>
+          {{ptable | safe}}
+        </div>
+      </div>
+      <div>
+        <h2>Top use</h2>
+        <div class="top">
+          <div></div>
+          <div>Product</div>
+          <div>Amount (thousand tons)</div>
+          {{utable | safe}}
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="center">
+      
+    </div>
   </div>
   <div class="center"><a href='/'>Back</a></div>
 </body>
