@@ -426,3 +426,144 @@
 17:49:22 Checkpoint started
 17:49:22 Checkpoint finished, log reused
 17:49:22 Server shutdown complete
+
+		Sat May 28 2022
+14:55:30 { Loading plugin 1: Type `plain', file `geos' in `../hosting'
+14:55:30   plain version 1.2.3234 from OpenLink Software
+14:55:30   GEOS plugin based on Geometry Engine Open Source library from Open Source Geospatial Foundation
+14:55:30   SUCCESS plugin 1: loaded from ../hosting/geos.so }
+14:55:30 { Loading plugin 2: Type `plain', file `proj4' in `../hosting'
+14:55:31   plain version 1.1.3234 from OpenLink Software
+14:55:31   Cartographic Projections support based on Frank Warmerdam's proj4 library
+14:55:31   SUCCESS plugin 2: loaded from ../hosting/proj4.so }
+14:55:31 { Loading plugin 3: Type `plain', file `shapefileio' in `../hosting'
+14:55:31   ShapefileIO version 0.1virt71 from OpenLink Software
+14:55:31   Shapefile support based on Frank Warmerdam's Shapelib
+14:55:31   SUCCESS plugin 3: loaded from ../hosting/shapefileio.so }
+14:55:31 OpenLink Virtuoso Universal Server
+14:55:31 Version 07.20.3234-pthreads for Linux as of May 18 2022
+14:55:31 uses OpenSSL 1.1.1  11 Sep 2018
+14:55:31 uses parts of PCRE, Html Tidy
+14:55:31 Database version 3126
+14:55:31 
+14:55:31 NOTE: Your database is using 32-bit prefix IDs in RDF_IRI
+14:55:31 
+14:55:31     This Virtuoso engine has been upgraded to use 64-bit prefix IDs
+14:55:31     in RDF_IRI to allow for even larger databases.
+14:55:31 
+14:55:31     To take advantage of this new feature, your database needs to
+14:55:31     be upgraded.
+14:55:31 
+14:55:31     The performance of your existing database should not be affected,
+14:55:31     except when performing certain bulkload operations.
+14:55:31 
+14:55:31     Please contact OpenLink Support <support@openlinksw.com> for 
+14:55:31     more information.
+14:55:31 
+14:55:31 SQL Optimizer enabled (max 1000 layouts)
+14:55:32 Compiler unit is timed at 0.000138 msec
+14:55:34 Roll forward started
+14:55:34 Roll forward complete
+14:55:36 Checkpoint started
+14:55:36 Checkpoint finished, log reused
+14:55:36 HTTP/WebDAV server online at 8890
+14:55:36 Server online at 1111 (pid 1)
+15:01:05 Server received signal 2
+15:01:05 Initiating normal shutdown
+15:01:05 Checkpoint started
+15:01:05 Checkpoint finished, log reused
+15:01:05 Server shutdown complete
+
+		Mon May 30 2022
+18:04:31 { Loading plugin 1: Type `plain', file `geos' in `../hosting'
+18:04:31   plain version 1.2.3234 from OpenLink Software
+18:04:31   GEOS plugin based on Geometry Engine Open Source library from Open Source Geospatial Foundation
+18:04:31   SUCCESS plugin 1: loaded from ../hosting/geos.so }
+18:04:31 { Loading plugin 2: Type `plain', file `proj4' in `../hosting'
+18:04:31   plain version 1.1.3234 from OpenLink Software
+18:04:31   Cartographic Projections support based on Frank Warmerdam's proj4 library
+18:04:31   SUCCESS plugin 2: loaded from ../hosting/proj4.so }
+18:04:31 { Loading plugin 3: Type `plain', file `shapefileio' in `../hosting'
+18:04:31   ShapefileIO version 0.1virt71 from OpenLink Software
+18:04:31   Shapefile support based on Frank Warmerdam's Shapelib
+18:04:31   SUCCESS plugin 3: loaded from ../hosting/shapefileio.so }
+18:04:31 OpenLink Virtuoso Universal Server
+18:04:31 Version 07.20.3234-pthreads for Linux as of May 18 2022
+18:04:31 uses OpenSSL 1.1.1  11 Sep 2018
+18:04:31 uses parts of PCRE, Html Tidy
+18:04:31 Database version 3126
+18:04:31 
+18:04:31 NOTE: Your database is using 32-bit prefix IDs in RDF_IRI
+18:04:31 
+18:04:31     This Virtuoso engine has been upgraded to use 64-bit prefix IDs
+18:04:31     in RDF_IRI to allow for even larger databases.
+18:04:31 
+18:04:31     To take advantage of this new feature, your database needs to
+18:04:31     be upgraded.
+18:04:31 
+18:04:31     The performance of your existing database should not be affected,
+18:04:31     except when performing certain bulkload operations.
+18:04:31 
+18:04:31     Please contact OpenLink Support <support@openlinksw.com> for 
+18:04:31     more information.
+18:04:31 
+18:04:31 SQL Optimizer enabled (max 1000 layouts)
+18:04:32 Compiler unit is timed at 0.000128 msec
+18:04:33 Roll forward started
+18:04:33 Roll forward complete
+18:04:34 Checkpoint started
+18:04:34 Checkpoint finished, log reused
+18:04:34 HTTP/WebDAV server online at 8890
+18:04:34 Server online at 1111 (pid 1)
+18:20:57 Server received signal 2
+18:20:57 Initiating normal shutdown
+18:20:57 Checkpoint started
+18:20:57 Checkpoint finished, log reused
+18:20:57 Server shutdown complete
+
+		Mon May 30 2022
+18:21:40 { Loading plugin 1: Type `plain', file `geos' in `../hosting'
+18:21:40   plain version 1.2.3234 from OpenLink Software
+18:21:40   GEOS plugin based on Geometry Engine Open Source library from Open Source Geospatial Foundation
+18:21:40   SUCCESS plugin 1: loaded from ../hosting/geos.so }
+18:21:40 { Loading plugin 2: Type `plain', file `proj4' in `../hosting'
+18:21:40   plain version 1.1.3234 from OpenLink Software
+18:21:40   Cartographic Projections support based on Frank Warmerdam's proj4 library
+18:21:40   SUCCESS plugin 2: loaded from ../hosting/proj4.so }
+18:21:40 { Loading plugin 3: Type `plain', file `shapefileio' in `../hosting'
+18:21:40   ShapefileIO version 0.1virt71 from OpenLink Software
+18:21:40   Shapefile support based on Frank Warmerdam's Shapelib
+18:21:40   SUCCESS plugin 3: loaded from ../hosting/shapefileio.so }
+18:21:40 OpenLink Virtuoso Universal Server
+18:21:40 Version 07.20.3234-pthreads for Linux as of May 18 2022
+18:21:40 uses OpenSSL 1.1.1  11 Sep 2018
+18:21:40 uses parts of PCRE, Html Tidy
+18:21:40 Database version 3126
+18:21:40 
+18:21:40 NOTE: Your database is using 32-bit prefix IDs in RDF_IRI
+18:21:40 
+18:21:40     This Virtuoso engine has been upgraded to use 64-bit prefix IDs
+18:21:40     in RDF_IRI to allow for even larger databases.
+18:21:40 
+18:21:40     To take advantage of this new feature, your database needs to
+18:21:40     be upgraded.
+18:21:40 
+18:21:40     The performance of your existing database should not be affected,
+18:21:40     except when performing certain bulkload operations.
+18:21:40 
+18:21:40     Please contact OpenLink Support <support@openlinksw.com> for 
+18:21:40     more information.
+18:21:40 
+18:21:40 SQL Optimizer enabled (max 1000 layouts)
+18:21:41 Compiler unit is timed at 0.000118 msec
+18:21:42 Roll forward started
+18:21:42 Roll forward complete
+18:21:42 Checkpoint started
+18:21:43 Checkpoint finished, log reused
+18:21:43 HTTP/WebDAV server online at 8890
+18:21:43 Server online at 1111 (pid 1)
+18:27:40 Server received signal 2
+18:27:40 Initiating normal shutdown
+18:27:40 Checkpoint started
+18:27:40 Checkpoint finished, log reused
+18:27:40 Server shutdown complete

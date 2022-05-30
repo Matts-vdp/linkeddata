@@ -6,11 +6,13 @@ def exec_query(query: str, local=True):
     if local:
         sparql = SPARQLWrapper(
             "http://virtuoso:8890/sparql", 
-            defaultGraph="http://localhost:8890/dataset", 
-            agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            defaultGraph="http://localhost:8890/dataset"
             )
     else:
-        sparql = SPARQLWrapper('https://query.wikidata.org/sparql')
+        sparql = SPARQLWrapper(
+            'https://query.wikidata.org/sparql',
+            agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+        )
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()

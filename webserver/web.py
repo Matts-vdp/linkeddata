@@ -88,7 +88,7 @@ def country():
         return redirect("/")
     cim, inc, cap, e = sc.info(name)
     if e != "":
-        e = "Error: " + str(e)
+        print(e)
     return render_template(
         "country.html", 
         graph = img, 
